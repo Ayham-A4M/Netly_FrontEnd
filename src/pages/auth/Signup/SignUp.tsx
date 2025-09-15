@@ -212,14 +212,14 @@ const SignUp = ({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateActio
 
                     {
                         stepNo == steps.length &&
-                        <Button disabled={sendingReq} type="submit" className='cursor-pointer w-full'>Submit</Button>
+                        <Button disabled={sendingReq} type="submit" className='cursor-pointer w-full text-slate-200'>Submit</Button>
                     }
 
                 </form>
 
             </Form>
             <div className='flex items-center justify-end ' >
-                <span className='underline pb-[2px] text-popover-foreground cursor-pointer' role='button' onClick={() => { setIsLogin(true) }}>
+                <span className='underline pb-[2px] text-popover-foreground hover:text-primary underline-offset-2 cursor-pointer' role='button' onClick={() => { setIsLogin(true) }}>
                     already have account
                 </span>
             </div>

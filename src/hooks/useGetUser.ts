@@ -2,14 +2,14 @@ import axiosInstance from "@/helper/axiosInterceptor"
 import { useEffect, useState } from "react";
 const useGetUser = () => {
     const [isUser, setUser] = useState<boolean>(false);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
     const [numberOfNotification, setNumberOfNotification] = useState<number | null>(null);
     useEffect(() => {
         const getUser = async () => {
             try {
-                setLoading(true);
+                // setLoading(true);
                 const response = await axiosInstance.get('/api/auth/getUser');
-                if (response) {
+                if (response.status===200) {
                     setUser(true);
                     if(response?.data?.numberOfNotification > 0){setNumberOfNotification(response?.data?.numberOfNotification)}
                 }

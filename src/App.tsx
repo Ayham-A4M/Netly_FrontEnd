@@ -14,6 +14,8 @@ import Notification from './pages/notification/Notification';
 import { ThemeProvider } from '@/components/theme-provider';
 import ResetPassword from './pages/auth/ResetPassword/ResetPassword';
 import PostPage from './pages/PostPage/PostPage';
+import Connection from './pages/connection/Connection';
+import EventsPage from './pages/events/Events';
 // Pages
 interface userContext {
   isUser: boolean,
@@ -38,15 +40,17 @@ function App() {
         />
 
         <Routes>
-          <Route element={<MainLayout />}>
-            {/* <Route element={<ProtectedRoutes />}> */}
-            <Route path='/' element={<Index />} />
-            <Route path='/myprofile' element={<MyProfile />} />
-            <Route path='/userprofile' element={<UserProfile />} />
-            <Route path='/notification' element={<Notification />} />
-            <Route path='/post/:postId' element={<PostPage/>} />
-            {/* </Route> */}
-          </Route>
+          {/* <Route element={<ProtectedRoutes />}> */}
+            <Route element={<MainLayout />}>
+              <Route path='/' element={<Index />} />
+              <Route path='/myprofile' element={<MyProfile />} />
+              <Route path='/userprofile' element={<UserProfile />} />
+              <Route path='/notification' element={<Notification />} />
+              <Route path='/post/:postId' element={<PostPage />} />
+              <Route path='/myconnection' element={<Connection />} />
+              <Route path='/events' element={<EventsPage />} />
+            </Route>
+          {/* </Route> */}
           <Route path='/resetPassword' element={<ResetPassword />} />
           <Route path='/login_signup' element={<Login_Signup />} />
         </Routes>

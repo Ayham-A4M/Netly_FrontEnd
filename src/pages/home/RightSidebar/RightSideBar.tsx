@@ -1,12 +1,10 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { useEffect } from "react"
 
 
 
 const RightSideBar = () => {
-  
-
-
     return (
         <aside className="hidden xl:block w-72 p-4 space-y-4 sticky top-20 h-fit">
             <Card className="bg-gradient-card border-0 shadow-lg">

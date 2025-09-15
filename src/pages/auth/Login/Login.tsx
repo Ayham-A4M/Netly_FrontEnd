@@ -49,7 +49,7 @@ const Login = ({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateAction
 
 
     return (
-        <Card className='w-[98%] max-w-[450px] p-6 gap-4 '>
+        <Card className='w-[98%] max-w-[450px] p-6 gap-4 bg-background shadow-md  '>
             <CardHeader className="p-0">
 
                 <div className='w-full flex items-center justify-center'>
@@ -106,9 +106,9 @@ const Login = ({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateAction
 
 
 
-                    <Button disabled={sendingReq} type="submit" className='cursor-pointer w-full'>Submit</Button>
+                    <Button disabled={sendingReq} type="submit" className='cursor-pointer w-full text-slate-200'>Submit</Button>
                     <div className='flex items-center justify-end ' >
-                        <span className='underline pb-[2px] text-popover-foreground cursor-pointer' role='button' onClick={() => { setIsLogin(false) }}>
+                        <span className='underline pb-[2px] text-popover-foreground hover:text-primary underline-offset-2 cursor-pointer' role='button' onClick={() => { setIsLogin(false) }}>
                             dont have account
                         </span>
                     </div>

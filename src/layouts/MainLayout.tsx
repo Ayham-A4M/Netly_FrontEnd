@@ -3,22 +3,26 @@ import Nav from "@/components/Navs/topNavBar/Nav"
 import MobileNav from "@/components/Navs/mobileNav/MobileNav"
 import LeftSideBar from "@/pages/home/LeftSidebar/LeftSideBar"
 import RightSideBar from "@/pages/home/RightSidebar/RightSideBar"
-import useShouldShowLeftCol from "@/hooks/useShouldShowLeftCol"
+import useGetScreenWidth from "@/hooks/useGetScreenWidth"
 
 const MainLayout = () => {
-    const shouldShowLeftCol = useShouldShowLeftCol();
+    // const shouldShowLeftCol = useShouldShowLeftCol();
+    const screenWidth = useGetScreenWidth();
     return (
         <div className="min-h-screen bg-background pb-20">
             <Nav />
             <div className="flex w-full mb-20 mx-auto lg:gap-4">
                 {
-                    shouldShowLeftCol &&
+                    screenWidth >= 1024 &&
                     <LeftSideBar />
                 }
                 <div className="w-full flex-1">
                     <Outlet />
                 </div>
-                <RightSideBar />
+                {
+                    screenWidth >= 1280 &&
+                    <RightSideBar />
+                }
             </div>
             <MobileNav />
         </div>

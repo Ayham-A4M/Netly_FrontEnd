@@ -6,17 +6,18 @@ import Loader from "@/components/ui/loader";
 const Notification = () => {
     const { notifications, loading, page, setPage, limitOfPages } = useGetNotifications();
     useInfiniteScroll(page, limitOfPages, notifications, loading, setPage);
-    useReadNotifications(notifications)
+    useReadNotifications(notifications);
     return (
-        <div className="bg-background  min-h-screen">
+        <div className="min-h-screen">
             <div className="w-full">
 
                 {
-                    notifications && notifications?.length > 0 ?
+                    (notifications && notifications?.length > 0) ?
                         notifications?.map((e: any) => (
                             <NotificationCard notification={e} key={e?._id} />
                         ))
                         :
+                        (!loading) &&
                         <div className="h-screen flex justify-center items-center">
                             <span className="text-primary md:text-xl">No Notification</span>
                         </div>
