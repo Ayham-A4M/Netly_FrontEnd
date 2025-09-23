@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { MdEmojiEmotions } from "react-icons/md"
 import { feelingsData } from "@/utils/feelings"
+import React from "react"
 // import feelingsData from "@/utils/feelings"
 const FeelingSelect = ({ feeling, setFeeling }: { feeling: string, setFeeling: React.Dispatch<string> }) => {
     return (
@@ -49,4 +50,4 @@ const FeelingSelect = ({ feeling, setFeeling }: { feeling: string, setFeeling: R
         </DropdownMenu>
     )
 }
-export default FeelingSelect
+export default React.memo(FeelingSelect)

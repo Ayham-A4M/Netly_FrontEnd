@@ -7,12 +7,14 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import AvatarFallBack from "@/components/helperComponent/AvatarFallBack";
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import handleInterestingInProcess from "./handler/handleInterestingInProcess";
 import { Link } from "react-router-dom";
 import handleUnInterestingInProcess from "./handler/handleUnInterestingInProcess";
+import { isBefore } from "date-fns";
 const EventCard = ({ eventInfo, eventType, interest }: { eventInfo: any, eventType: boolean | null, interest: boolean }) => {
     const [interestingIn, setInterestingIn] = useState<boolean>(interest);
+
     return (
         <Card className="p-3 bg-background">
             <CardHeader className="p-0 gap-1 border-b-[1px] border-zinc-300 pb-1 dark:border-zinc-800">
@@ -62,7 +64,7 @@ const EventCard = ({ eventInfo, eventType, interest }: { eventInfo: any, eventTy
                 {eventInfo?.description}
             </CardContent>
             <CardFooter className="p-0 flex justify-between items-center">
-                <Link to="/userProfile" state={{userId:eventInfo?.userId}} className="flex items-center gap-2 text-[.8rem]">
+                <Link to="/userProfile" state={{ userId: eventInfo?.userId }} className="flex items-center gap-2 text-[.8rem]">
                     <span>Create By : </span>
                     <Avatar className="size-6">
                         <AvatarImage src={(eventInfo?.avatar && `http://localhost:8000${eventInfo?.avatar}`)} />
@@ -71,12 +73,19 @@ const EventCard = ({ eventInfo, eventType, interest }: { eventInfo: any, eventTy
                     <span>{eventInfo?.userName}</span>
                 </Link>
                 {
-                    (!eventType) &&
+                    isBefore(new Date(eventInfo?.date), new Date()) && 
+                    <span className="text-primary text-[.8rem] font-extrabold">event ended</span>
+                }
+
+                {
+
+                    (!eventType && !isBefore(new Date(eventInfo?.date), new Date())) &&
+
                     <>
                         {
                             interestingIn
                                 ?
-                                <FaStar className="text-primary cursor-pointer size-5" role="button" onClick={() => { setInterestingIn(prev => !prev);handleUnInterestingInProcess(eventInfo?._id) }} />
+                                <FaStar className="text-primary cursor-pointer size-5" role="button" onClick={() => { setInterestingIn(prev => !prev); handleUnInterestingInProcess(eventInfo?._id) }} />
                                 :
                                 <FaRegStar className="text-primary cursor-pointer size-5" role="button" onClick={() => { setInterestingIn(prev => !prev); handleInterestingInProcess(eventInfo?._id) }} />
                         }

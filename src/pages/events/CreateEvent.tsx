@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Calendar } from "@/components/ui/calendar"
-import { format } from "date-fns"
+import { format, isBefore } from "date-fns"
 import { Calendar as CalendarIcon, ChevronDownIcon } from "lucide-react"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Card, CardHeader } from "@/components/ui/card"
 import { useState } from "react"
 import {
     Form,
@@ -104,7 +104,7 @@ const CreateEvent = () => {
                     />
 
 
-                    <div className="flex justify-between  flex-wrap-reverse gap-y-2 items-center">
+                    <div className="flex justify-between gap-3.5  items-center">
                         <div className="w-full flex items-center gap-2.5">
                             <div className="flex items-center gap-1 w-fit">
                                 <FormField
@@ -160,6 +160,7 @@ const CreateEvent = () => {
                                         </PopoverTrigger>
                                         <PopoverContent className="w-auto overflow-hidden p-0" align="start">
                                             <Calendar
+                                                disabled={(date: Date) => (isBefore(date, new Date()))}
                                                 mode="single"
                                                 selected={field.value}
                                                 onSelect={field.onChange}

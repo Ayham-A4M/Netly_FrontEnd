@@ -23,7 +23,7 @@ const PostPage = () => {
         }
         if (postId)
             fetchPost();
-    }, [])
+    }, [postId])
     return (
         <div className="h-screen pt-2 pb-3">
             {

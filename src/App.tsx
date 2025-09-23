@@ -16,6 +16,12 @@ import ResetPassword from './pages/auth/ResetPassword/ResetPassword';
 import PostPage from './pages/PostPage/PostPage';
 import Connection from './pages/connection/Connection';
 import EventsPage from './pages/events/Events';
+import LoadingPage from './components/ui/loading_page';
+import Activity from './pages/activity/Activity';
+import A_commentReactions from './pages/activity/A_commentReactions';
+import A_postReactions from './pages/activity/A_postReactions';
+import A_comments from './pages/activity/A_comments';
+
 // Pages
 interface userContext {
   isUser: boolean,
@@ -35,12 +41,12 @@ function App() {
         <Toaster
           toastOptions={{
             position: 'top-right',
-            style: { borderRadius: '6px', backgroundColor: '#6c6fec', color: 'oklch(0.9232 0.0026 48.7171)' }
+            style: { borderRadius: '6px', color: '#444444' }
           }}
         />
 
         <Routes>
-          {/* <Route element={<ProtectedRoutes />}> */}
+          <Route element={<ProtectedRoutes />}>
             <Route element={<MainLayout />}>
               <Route path='/' element={<Index />} />
               <Route path='/myprofile' element={<MyProfile />} />
@@ -49,10 +55,16 @@ function App() {
               <Route path='/post/:postId' element={<PostPage />} />
               <Route path='/myconnection' element={<Connection />} />
               <Route path='/events' element={<EventsPage />} />
+              <Route path='/activity' element={<Activity />} >
+                <Route path='comments' element={<A_comments />} />
+                <Route path='postReactions' element={<A_postReactions />} />
+                <Route path='commentReactions' element={<A_commentReactions />} />
+              </Route>
             </Route>
-          {/* </Route> */}
+          </Route>
           <Route path='/resetPassword' element={<ResetPassword />} />
           <Route path='/login_signup' element={<Login_Signup />} />
+          <Route path="/loading" element={<LoadingPage />} />
         </Routes>
       </UserContext.Provider>
     </ThemeProvider>

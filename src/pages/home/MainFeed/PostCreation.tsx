@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { BadgeQuestionMarkIcon } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import handleCreateNormalPost from "./handler/handleCreateNormalPost"
 import { BsImages } from "react-icons/bs";
 import { RiSendPlaneFill } from "react-icons/ri";
@@ -15,9 +15,7 @@ const PostCreation = () => {
     const [postImages, setPostImages] = useState<FileList | null>(null);
     const [previewImages, setPreviewImages] = useState<string[]>([]);
     const [feeling, setFeeling] = useState<string>("");
-    useEffect(() => {
-        console.log(feeling);
-    }, [feeling])
+
     const handleChangeImages = (eve: React.ChangeEvent<HTMLInputElement>) => {
         if (eve.target.files) {
             const files = eve.target.files;
@@ -60,7 +58,7 @@ const PostCreation = () => {
             <CardContent className="">
                 <div className="flex gap-3">
 
-                    <Textarea placeholder="What's on your mind?" value={postContent || ""} className="bg-muted/50" onChange={(e) => {
+                    <Textarea placeholder="What's on your mind?" value={postContent || ""} className="bg-muted/50 max-h-72 overflow-auto" onChange={(e) => {
                         setPostContent(e.target.value);
                     }} />
                 </div>
@@ -69,7 +67,7 @@ const PostCreation = () => {
             <CardFooter className="flex flex-col gap-2  items-start">
                 <div className="flex justify-between w-full">
                     <label htmlFor="imagesSelect" className="px-3.5 py-1 bg-background border-[1px] text-popover-foreground hover:border-primary  cursor-pointer duration-300 rounded-2xl text-md font-extralight text-sm  flex items-center gap-1">
-                        Photo
+                        Photos
                         <BsImages className="text-green-500 " />
                     </label>
                     <input type="file" className="hidden" id="imagesSelect" multiple onChange={handleChangeImages} />
@@ -86,16 +84,16 @@ const PostCreation = () => {
 
                 </div>
                 <div className="flex justify-end w-full">
-                    {
-                        <Button disabled={sendingReq} className="cursor-pointer text-primary hover:text-white hover:bg-primary duration-300 transition-colors" size="icon" variant="outline"
-                            onClick={() => {
-                                createPost()
-                            }}
 
-                        >
-                            <RiSendPlaneFill className="size-4 " />
-                        </Button>
-                    }
+                    <Button disabled={sendingReq} className="cursor-pointer text-primary hover:text-white hover:bg-primary duration-300 transition-colors" size="icon" variant="outline"
+                        onClick={() => {
+                            createPost()
+                        }}
+
+                    >
+                        <RiSendPlaneFill className="size-4 " />
+                    </Button>
+
                 </div>
                 {
                     previewImages.length > 0 &&

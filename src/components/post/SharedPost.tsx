@@ -5,15 +5,15 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { MessageSquare, Share2 } from 'lucide-react'
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import SelectReaction from '../../pages/home/MainFeed/Reactions'
 import calculateTime from '@/helper/calculateTime'
 import PostDropMenu from './PostDropMenue'
 import { Link } from 'react-router-dom'
+import Post from './Post'
 import { feelingsObject } from '@/utils/feelings'
-import SharedPost from './SharedPost'
-interface props { e: any, setSharePostId: React.Dispatch<React.SetStateAction<string | null>>, setImagePath: React.Dispatch<React.SetStateAction<string | null>>, setDeletePostId: React.Dispatch<React.SetStateAction<string | null>>, setPostId: React.Dispatch<React.SetStateAction<string | null>>, setPostOwnerId: React.Dispatch<React.SetStateAction<string | null>>, setEditPostId: React.Dispatch<React.SetStateAction<string | null>> }
-const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, setPostOwnerId, setEditPostId }: props) => {
+interface props { e: any, setImagePath: React.Dispatch<React.SetStateAction<string | null>>, setPostId: React.Dispatch<React.SetStateAction<string | null>> }
+const SharedPost = ({ e, setImagePath, setPostId }: props) => {
     const [showMore, setShowMore] = useState(false);
     const pRef = useRef<HTMLParagraphElement>(null);
     const handleDisplayContent = () => {
@@ -32,9 +32,6 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
     }, [pRef.current?.clientHeight])
 
     const [currentImageIdx, setCurrentImageIdx] = useState(0);
-
-
-
     const handlePrevImage = () => {
         setCurrentImageIdx((prev) => (prev > 0 ? prev - 1 : prev));
     };
@@ -42,9 +39,8 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
         setCurrentImageIdx((prev) => (e.images && prev < e.images.length - 1 ? prev + 1 : prev));
     };
 
-
     return (
-        <Card className="bg-gradient-card border-0 shadow-lg gap-y-2">
+        <Card className="bg-gradient-card border-0 shadow-none border-y-2 gap-y-0">
             <CardHeader className="pb-4 px-2">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -65,17 +61,10 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
                             <p className="text-sm text-muted-foreground">{calculateTime(new Date(e.publishedAt))}</p>
                         </div>
                     </div>
-
-                    {
-                        e.isEditable &&
-                        <PostDropMenu setDeletePostId={setDeletePostId} postId={e._id} setEditPostId={setEditPostId} />
-                    }
                 </div>
             </CardHeader>
-
-            <CardContent className="space-y-4 px-4">
+            <CardContent className="space-y-0 px-4">
                 {
-                    // images slider
                     e?.images && e?.images.length > 0 &&
                     <div className='w-full relative flex flex-col items-center'>
                         <div className="w-full flex items-center justify-center gap-2">
@@ -116,7 +105,6 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
                         </div>
                     </div>
                 }
-                {/* post content */}
                 <div>
                     <p ref={pRef} id="content" className='whitespace-pre-line line-clamp-5'>
                         {
@@ -139,38 +127,15 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
 
 
                 </div>
-
-                {/* shared post section it will shown if only the post is shared */}
-                {
-                    e?.sharedPost &&
-                    <SharedPost e={e?.sharedPost} setImagePath={setImagePath} setPostId={setPostId} />
-                }
-
-                {/* reactions with post */}
-                <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                    <div className="flex items-center justify-between w-full  md:gap-4 md:justify-start">
-                        <SelectReaction userReaction={e.userReaction} postOwnerId={e.userId} postId={e._id} reactionNumber={e?.loveCount} />
-
-                        <Button variant="ghost" size="sm" className="gap-2 text-blue-500" onClick={() => { setPostId(e?._id); setPostOwnerId(e?.userId) }}>
-                            <MessageSquare className="w-4 h-4" />
-                            <span className="hidden sm:inline">Comment</span> {e.commentsCount}
-                        </Button>
-                        <Button variant="ghost" size="sm" className="gap-2 text-green-500" onClick={() => { setSharePostId(e?._id) }}>
-                            <Share2 className="w-4 h-4" />
-                            <span className="hidden sm:inline">Share</span> {e.sharedCount}
-                        </Button>
-                        {
-                            !window.location.href.includes("/post/") &&
-                            <Link to={`/post/${e?._id}`}>
-                                <Button variant="ghost" size="sm" className="gap-2 cursor-pointer text-primary ">
-                                    <AiOutlineFileSearch className='w-4 h-4' />
-                                    <span className="hidden sm:inline">View</span>
-                                </Button>
-                            </Link>
-                        }
-
-
-                    </div>
+                <div className='flex items-center justify-end'>
+                   
+                        <Link to={`/post/${e?._id}`}>
+                            <Button variant="ghost" size="sm" className="gap-2 cursor-pointer text-primary ">
+                                <AiOutlineFileSearch className='w-4 h-4' />
+                                <span className="hidden sm:inline">View</span>
+                            </Button>
+                        </Link>
+        
                 </div>
 
             </CardContent>
@@ -179,7 +144,7 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
     )
 }
 
-export default React.memo(Post)
+export default SharedPost
 
 
 

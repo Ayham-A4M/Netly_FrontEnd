@@ -1,114 +1,90 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import AvatarFallBack from "@/components/helperComponent/AvatarFallBack";
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import { FcVideoCall } from "react-icons/fc";
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { useEffect } from "react"
-
+import axiosInstance from "@/helper/axiosInterceptor";
+import { format } from "date-fns";
+import { useEffect, useState } from "react"
+import { FcBinoculars } from "react-icons/fc";
+import { FaLocationDot } from "react-icons/fa6";
+import { FcClapperboard } from "react-icons/fc";
 
 
 const RightSideBar = () => {
+    const [upcomingEvents, setUpcomingEvents] = useState<any[]>([]); // just 3 events as maximum
+    const [followers, setFollowers] = useState<any[]>([]); // just 3 followers as maximum
+    useEffect(() => {
+        const getLeftSideBarInformation = async () => {
+            try {
+                const response = await axiosInstance.get('/api/profile/rightSidebarInfo');
+                if (response.status === 200) {
+                    setUpcomingEvents(response.data?.upcomingEvents || []);
+                    setFollowers(response.data?.followers || []);
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getLeftSideBarInformation()
+    }, [])
     return (
         <aside className="hidden xl:block w-72 p-4 space-y-4 sticky top-20 h-fit">
-            <Card className="bg-gradient-card border-0 shadow-lg">
+            <Card className="bg-gradient-card border-0 shadow-lg gap-0">
                 <CardHeader className="pb-3">
-                    <h3 className="font-semibold text-foreground">Your upcoming events</h3>
+                    <h3 className="font-semibold text-foreground flex items-center gap-2">Upcoming events <FcClapperboard className="size-5" /> </h3>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                    <div className="flex items-center gap-3 p-2 rounded-md hover:bg-social-orange-light transition-colors">
-                        <div className="w-8 h-8 bg-social-orange rounded-lg flex items-center justify-center">
-                            <span className="text-xs font-medium">🎪</span>
-                        </div>
-                        <div className="flex-1">
-                            <p className="font-medium text-sm">Garden BBQ</p>
-                            <p className="text-xs text-muted-foreground">Sat 16 June, Tom's Garden</p>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-3 p-2 rounded-md hover:bg-social-blue-light transition-colors">
-                        <div className="w-8 h-8 bg-social-blue rounded-lg flex items-center justify-center">
-                            <span className="text-xs font-medium">🗳️</span>
-                        </div>
-                        <div className="flex-1">
-                            <p className="font-medium text-sm">City Council Vote</p>
-                            <p className="text-xs text-muted-foreground">Sat 16 June, Town Hall</p>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-3 p-2 rounded-md hover:bg-social-purple-light transition-colors">
-                        <div className="w-8 h-8 bg-social-purple rounded-lg flex items-center justify-center">
-                            <span className="text-xs font-medium">🎵</span>
-                        </div>
-                        <div className="flex-1">
-                            <p className="font-medium text-sm">Post-punk Festival</p>
-                            <p className="text-xs text-muted-foreground">Sat 16 June, Tom's Garden</p>
-                        </div>
-                    </div>
+                    {
+                        upcomingEvents.length === 0 ? (
+                            <p className="text-sm text-muted-foreground">You have no upcoming events</p>
+                        ) : (
+                            upcomingEvents.map((event) => (
+
+                                <div key={event?._id} className="flex flex-col border-b-2 gap-1 p-x-2 ">
+                                    <span className="text-primary text-[.6rem] font-bold">{event?.title}</span>
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-[.7rem]">{format(new Date(event?.date), "PPP")}</span>
+                                        <span className="text-[.7rem] flex items-center gap-0.5">{event?.eventType} {event?.eventType === "onsite" ? <FaLocationDot className="text-orange-500" /> : <FcVideoCall />}</span>
+                                    </div>
+                                </div>
+
+
+
+                            ))
+
+
+                        )
+                    }
                 </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-lg">
+            <Card className="bg-gradient-card border-0 shadow-lg gap-y-0">
                 <CardHeader className="pb-3">
-                    <h3 className="font-semibold text-foreground">Community chats</h3>
+                    <h3 className="font-semibold text-foreground flex items-center gap-2">Followers <FcBinoculars className="size-5" /></h3>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                    <div className="flex items-center gap-2 p-2 rounded-md hover:bg-social-orange-light transition-colors">
-                        <Avatar className="w-6 h-6">
-                            <AvatarFallback className="text-xs bg-social-orange text-white">DL</AvatarFallback>
-                        </Avatar>
-                        <span className="text-sm">Dog Lovers</span>
-                    </div>
-                    <div className="flex items-center gap-2 p-2 rounded-md hover:bg-social-green-light transition-colors">
-                        <Avatar className="w-6 h-6">
-                            <AvatarFallback className="text-xs bg-social-green text-white">CF</AvatarFallback>
-                        </Avatar>
-                        <span className="text-sm">Copenhagen friends</span>
-                    </div>
-                    <div className="flex items-center gap-2 p-2 rounded-md hover:bg-social-blue-light transition-colors">
-                        <Avatar className="w-6 h-6">
-                            <AvatarFallback className="text-xs bg-social-blue text-white">YC</AvatarFallback>
-                        </Avatar>
-                        <span className="text-sm">Y2K Car owners</span>
-                    </div>
+                    {
+                        followers.length === 0 ? (
+                            <p className="text-sm text-muted-foreground">You have no followers</p>
+                        ) : (
+                            followers.map((follower) => (
+                                <div key={follower?._id} className="flex items-center gap-3 p-2 rounded-md hover:bg-social-blue-light transition-colors">
+                                    <Avatar className="size-8">
+                                        <AvatarImage src={`http://localhost:8000${follower?.avatar}`} />
+                                        <AvatarFallBack backgroundColor={follower?.defaultCoverColor} name={follower?.userName} />
+                                    </Avatar>
+                                    <div className="flex flex-col leading-[18px]">
+                                        <span>{follower?.userName}</span>
+                                        <span className="text-[.7rem] line-clamp-1">{follower?.title}</span>
+                                    </div>
+                                </div>
+                            ))
+                        )
+                    }
                 </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-lg">
-                <CardHeader className="pb-3">
-                    <h3 className="font-semibold text-foreground">Birthdays</h3>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                    <div className="p-2 rounded-md hover:bg-social-pink-light transition-colors">
-                        <p className="font-medium text-sm mb-2">20 August</p>
-                        <div className="flex items-center gap-2">
-                            <Avatar className="w-6 h-6">
-                                <AvatarFallback className="text-xs bg-social-pink text-white">BH</AvatarFallback>
-                            </Avatar>
-                            <div>
-                                <p className="text-sm font-medium">Bob Hammond</p>
-                                <p className="text-xs text-muted-foreground">Turning 28 years old</p>
-                            </div>
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-lg">
-                <CardHeader className="pb-3">
-                    <h3 className="font-semibold text-foreground">Online contacts</h3>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                    <div className="flex items-center gap-2 p-2 rounded-md hover:bg-social-green-light transition-colors">
-                        <div className="w-2 h-2 bg-social-green rounded-full"></div>
-                        <Avatar className="w-6 h-6">
-                            <AvatarFallback className="text-xs bg-social-green text-white">ML</AvatarFallback>
-                        </Avatar>
-                        <span className="text-sm">Mark Larsen</span>
-                    </div>
-                    <div className="flex items-center gap-2 p-2 rounded-md hover:bg-social-green-light transition-colors">
-                        <div className="w-2 h-2 bg-social-green rounded-full"></div>
-                        <Avatar className="w-6 h-6">
-                            <AvatarFallback className="text-xs bg-social-green text-white">ER</AvatarFallback>
-                        </Avatar>
-                        <span className="text-sm">Ethan Reynolds</span>
-                    </div>
-                </CardContent>
-            </Card>
         </aside>
     )
 }

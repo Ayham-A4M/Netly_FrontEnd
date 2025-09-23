@@ -11,6 +11,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import Logo from '../../../assets/svgs/logo.svg'
 import signupPic from '../../../assets/images/signup.png'
 import {
     Card,
@@ -53,10 +54,10 @@ const SignUp = ({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateActio
         resolver: zodResolver(signupSchema),
         defaultValues: {
             age: 18,
-            userName:'',
-            password:'',
-            confirmPassword:'',
-            email:'',
+            userName: '',
+            password: '',
+            confirmPassword: '',
+            email: '',
         }
     })
     const handleNextClick = async (): Promise<void> => {
@@ -74,14 +75,14 @@ const SignUp = ({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateActio
     const [sendingReq, setSendingReq] = useState(false);
 
     return (
-        <Card className='w-[98%] max-w-[450px] p-6 gap-4 '>
+        <Card className='w-[98%] max-w-[450px] p-6 gap-4 bg-background rounded-none'>
             <CardHeader className="p-0">
                 <div className='w-full flex items-center justify-center'>
-                    <div className='w-fit h-fit'>
-                        <img src={signupPic} className='size-48' alt="social media photo" />
+                    <div className='flex items-center justify-center'>
+                        <img src={Logo} alt="logo" className='size-16' />
                     </div>
                 </div>
-                <CardTitle className='text-2xl text-ring font-extrabold italic text-center'>Share your story with the world</CardTitle>
+                <CardTitle className='text-2xl text-ring font-extrabold text-center'>Create New Account</CardTitle>
             </CardHeader>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -212,17 +213,23 @@ const SignUp = ({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateActio
 
                     {
                         stepNo == steps.length &&
-                        <Button disabled={sendingReq} type="submit" className='cursor-pointer w-full text-slate-200'>Submit</Button>
+                        <Button disabled={sendingReq} type="submit" className='cursor-pointer w-full text-slate-200 rounded-none'>Submit</Button>
                     }
 
                 </form>
 
             </Form>
-            <div className='flex items-center justify-end ' >
-                <span className='underline pb-[2px] text-popover-foreground hover:text-primary underline-offset-2 cursor-pointer' role='button' onClick={() => { setIsLogin(true) }}>
-                    already have account
-                </span>
-            </div>
+            {
+                stepNo !== steps.length &&
+                <>
+                    <div className='text-center'>
+                        or
+                    </div>
+                    <Button className='cursor-pointer w-full rounded-none bg-zinc-600 text-slate-200' onClick={(e) => { e.preventDefault(); setIsLogin(true) }}>
+                        already have account
+                    </Button>
+                </>
+            }
         </Card>
     )
 }

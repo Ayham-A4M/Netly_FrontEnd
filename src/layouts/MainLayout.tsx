@@ -11,7 +11,7 @@ const MainLayout = () => {
     return (
         <div className="min-h-screen bg-background pb-20">
             <Nav />
-            <div className="flex w-full mb-20 mx-auto lg:gap-4">
+            <div className="flex w-full mb-20 md:px-1 mx-auto lg:gap-4">
                 {
                     screenWidth >= 1024 &&
                     <LeftSideBar />
