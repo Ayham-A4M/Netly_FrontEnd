@@ -9,6 +9,7 @@ export default defineConfig({
     tailwindcss()
 
   ],
+  base: process.env.VITE_BASE_PATH || "/Netly_FrontEnd",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
