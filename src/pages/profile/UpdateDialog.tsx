@@ -24,10 +24,15 @@ import { useState } from "react"
 const updateSchema = z.object({
     bio: z.string().max(1024).optional(),
     title: z.string().max(500).optional(),
-    location: z.string().max(100).regex(/^[A-Z][a-zA-Z]+-[A-Z][a-zA-Z]+$/, "Must be in Country-City format (e.g., 'Canada-Toronto')").optional(),
+    location: z.string().max(100).optional(),
     link1: z.string().max(250).optional(),
     link2: z.string().max(250).optional(),
     link3: z.string().max(250).optional(),
+}).refine((data: updateType) => (
+    !data.location || /^[A-Z][a-zA-Z]+-[A-Z][a-zA-Z]+$/.test(data.location)
+), {
+    message: "Must be in Country-City format (e.g., 'Canada-Toronto')",
+    path: ["location"],
 })
 export type updateType = z.infer<typeof updateSchema>;
 
@@ -147,7 +152,7 @@ const UpdateDialog = ({ setProfile, profile }: { setProfile: React.Dispatch<any>
                             )}
                         />
 
-                        <Button disabled={sendingReq} type="submit" className='cursor-pointer w-full'>Submit</Button>
+                        <Button disabled={sendingReq} type="submit" className='cursor-pointer text-slate-200 w-full'>Submit</Button>
 
                     </form>
                 </Form>

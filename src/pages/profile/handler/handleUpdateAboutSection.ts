@@ -1,5 +1,7 @@
 import toast from "react-hot-toast"
 import axiosInstance from "@/helper/axiosInterceptor"
+import showErrorToast from "@/helper/showErrorToast"
+
 const handleUpdateAboutSection = async (data: any, setProfile: React.Dispatch<any>, setSendingReq: React.Dispatch<boolean>) => {
     interface UpdateObject {
         [key: string]: any; // Or a more specific type than 'any'
@@ -31,7 +33,7 @@ const handleUpdateAboutSection = async (data: any, setProfile: React.Dispatch<an
             return
         }
     } catch (err) {
-        console.log(err)
+        showErrorToast(err);
 
     } finally {
         setSendingReq(false);

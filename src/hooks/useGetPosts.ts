@@ -1,5 +1,6 @@
 import axiosInstance from "@/helper/axiosInterceptor"
 import { useEffect, useState } from "react"
+import showErrorToast from "@/helper/showErrorToast"
 
 
 const useGetPosts = () => {
@@ -24,7 +25,7 @@ const useGetPosts = () => {
                 }
 
             } catch (err) {
-
+                showErrorToast(err);
             } finally {
                 setLoading(false);
             }

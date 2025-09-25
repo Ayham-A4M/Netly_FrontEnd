@@ -1,5 +1,7 @@
 import axiosInstance from "@/helper/axiosInterceptor"
 import toast from "react-hot-toast"
+import showErrorToast from "@/helper/showErrorToast"
+
 const handleUpdateAvatar = async(avatarImage: File | null):Promise<boolean> => {
     try {
         if (!avatarImage) { toast.error("no specific image"); return false; }
@@ -12,8 +14,8 @@ const handleUpdateAvatar = async(avatarImage: File | null):Promise<boolean> => {
         }
         return false;
     } catch (err) {
+        showErrorToast(err);
         return false;
-        console.log(err);
     }
 }
 

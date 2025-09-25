@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-
 const useGetScreenWidth = () => {
     // const [show, setShow] = useState<boolean>(window.innerWidth >= 1024);
     const [screenSize, setScreenSize] = useState<number>(window.innerWidth);

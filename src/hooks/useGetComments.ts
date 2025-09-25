@@ -1,5 +1,7 @@
 import axiosInstance from "@/helper/axiosInterceptor"
 import { useEffect, useState } from "react"
+import showErrorToast from "@/helper/showErrorToast"
+
 const useGetComments = (postId: string) => {
     const [comments, setComments] = useState<any>(null)
     const [page, setPage] = useState<number>(1);
@@ -15,7 +17,7 @@ const useGetComments = (postId: string) => {
                     setComments(response.data?.comments);
                 }
             } catch (err) {
-                console.log(err);
+                showErrorToast(err)
             }finally{
                 setLoading(false);
             }

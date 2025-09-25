@@ -1,5 +1,6 @@
 import axiosInstance from "@/helper/axiosInterceptor"
 import toast from "react-hot-toast";
+import showErrorToast from "@/helper/showErrorToast"
 
 interface normalPost {
     visibility: "public" | "private",
@@ -43,7 +44,7 @@ const handleCreateNormalPost = async (postContent: string | null, setSendingReq:
         }
         return false;
     } catch (err) {
-        console.log(err);
+        showErrorToast(err);
         return false;
 
     } finally {

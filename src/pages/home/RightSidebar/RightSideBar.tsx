@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { FcBinoculars } from "react-icons/fc";
 import { FaLocationDot } from "react-icons/fa6";
 import { FcClapperboard } from "react-icons/fc";
+import showErrorToast from "@/helper/showErrorToast"
 
 
 const RightSideBar = () => {
@@ -22,7 +23,7 @@ const RightSideBar = () => {
                     setFollowers(response.data?.followers || []);
                 }
             } catch (err) {
-                console.log(err)
+                showErrorToast(err);
             }
         }
         getLeftSideBarInformation()

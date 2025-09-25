@@ -1,5 +1,6 @@
 import axiosInstance from "@/helper/axiosInterceptor"
 import toast from "react-hot-toast";
+import showErrorToast from "@/helper/showErrorToast"
 
 const handleSubmitReply = async (content: string, commentId: string, setSendingReq: React.Dispatch<boolean>, postId: string | null, commentOwnerId: string | null) => {
     try {
@@ -10,7 +11,7 @@ const handleSubmitReply = async (content: string, commentId: string, setSendingR
             toast.success(response?.data?.msg || 'reply published');
         }
     } catch (err) {
-        console.log(err);
+        showErrorToast(err);
     } finally {
         setSendingReq(false)
     }

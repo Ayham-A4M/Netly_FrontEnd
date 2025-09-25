@@ -2,6 +2,8 @@
 import ProfileCard from "./ProfileCard"
 import { useEffect, useState } from "react"
 import axiosInstance from "@/helper/axiosInterceptor"
+import showErrorToast from "@/helper/showErrorToast"
+
 const LeftSideBar = () => {
      const [profileCard, setProfileCard] = useState<any>(null);
     useEffect(() => {
@@ -12,7 +14,7 @@ const LeftSideBar = () => {
                     setProfileCard(response.data?.profileCard);
                 }
             } catch (err) {
-                console.log(err);
+                showErrorToast(err);
             }
         }
         test();

@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react"
 import axiosInstance from "@/helper/axiosInterceptor"
 import { useDebounce } from 'use-debounce';
+import showErrorToast from "@/helper/showErrorToast"
+
 const useGetConnections = () => {
     const [connection, setConnection] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
@@ -29,7 +31,7 @@ const useGetConnections = () => {
                     }
                 }
             } catch (err) {
-                console.log(err);
+                showErrorToast(err)
             } finally {
                 setLoading(false);
             }

@@ -1,5 +1,7 @@
 import type { loginType } from "../Login"
 import axiosInstance from "@/helper/axiosInterceptor"
+import showErrorToast from "@/helper/showErrorToast"
+
 const handleLoginProcess = async (data: loginType, setSendingReq: React.Dispatch<React.SetStateAction<boolean>>, setNotification: React.Dispatch<React.SetStateAction<number | null>> | undefined) => {
 
     try {
@@ -13,6 +15,7 @@ const handleLoginProcess = async (data: loginType, setSendingReq: React.Dispatch
             return true;
         }
     } catch (err) {
+        showErrorToast(err);
         return false;
     } finally {
         setSendingReq(false)

@@ -1,5 +1,6 @@
 import axiosInstance from "@/helper/axiosInterceptor";
 import { useEffect, useState } from "react"
+import showErrorToast from "@/helper/showErrorToast"
 
 const useGetNotifications = () => {
     const [notifications, setNotifications] = useState<any>(null)
@@ -22,7 +23,7 @@ const useGetNotifications = () => {
 
                 }
             } catch (err) {
-                console.log(err);
+                showErrorToast(err);
             } finally {
                 setLoading(false);
             }

@@ -44,6 +44,7 @@ const ShowPosts = ({ posts, setPosts }: props) => {
                             setPostId={setPostId}
                             setEditPostId={setEditPostId}
                             setPostOwnerId={setPostOwnerId}
+                            key={e?._id}
                         />
 
                     ))

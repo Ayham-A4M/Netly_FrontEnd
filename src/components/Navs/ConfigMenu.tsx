@@ -14,6 +14,8 @@ import { Link } from "react-router-dom";
 import axiosInstance from "@/helper/axiosInterceptor";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import showErrorToast from "@/helper/showErrorToast"
+
 const ConfigMenu = () => {
     const navigate = useNavigate()
     const handleLogout = async () => {
@@ -24,7 +26,7 @@ const ConfigMenu = () => {
                 navigate("/login_signup", { replace: true });
             }
         } catch (err) {
-            console.log(err);
+            showErrorToast(err);
         }
     }
     return (

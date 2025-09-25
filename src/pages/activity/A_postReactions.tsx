@@ -7,6 +7,7 @@ import DeleteDialog from "@/components/dialog/DeleteDialog";
 import axiosInstance from "@/helper/axiosInterceptor";
 import toast from "react-hot-toast";
 import A_postReactionCard from "@/components/activity/postReactions/A_postReactionCard";
+import showErrorToast from "@/helper/showErrorToast"
 
 const A_postReactions = () => {
   const { activity, setActivity, loading, page, setPage, limitOfPages } = useGetActivity('/api/activity/postReactions');
@@ -21,7 +22,7 @@ const A_postReactions = () => {
         toast.success(response?.data?.msg || "comment deleted successfully");
       }
     } catch (err) {
-      console.log(err);
+      showErrorToast(err);
     }
   }
 

@@ -151,18 +151,18 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
                     <div className="flex items-center justify-between w-full  md:gap-4 md:justify-start">
                         <SelectReaction userReaction={e.userReaction} postOwnerId={e.userId} postId={e._id} reactionNumber={e?.loveCount} />
 
-                        <Button variant="ghost" size="sm" className="gap-2 text-blue-500" onClick={() => { setPostId(e?._id); setPostOwnerId(e?.userId) }}>
+                        <Button variant="ghost" size="sm" className="gap-2 cursor-pointer " onClick={() => { setPostId(e?._id); setPostOwnerId(e?.userId) }}>
                             <MessageSquare className="w-4 h-4" />
                             <span className="hidden sm:inline">Comment</span> {e.commentsCount}
                         </Button>
-                        <Button variant="ghost" size="sm" className="gap-2 text-green-500" onClick={() => { setSharePostId(e?._id) }}>
+                        <Button variant="ghost" size="sm" className="gap-2 cursor-pointer " onClick={() => { setSharePostId(e?._id) }}>
                             <Share2 className="w-4 h-4" />
                             <span className="hidden sm:inline">Share</span> {e.sharedCount}
                         </Button>
                         {
                             !window.location.href.includes("/post/") &&
                             <Link to={`/post/${e?._id}`}>
-                                <Button variant="ghost" size="sm" className="gap-2 cursor-pointer text-primary ">
+                                <Button variant="ghost" size="sm" className="gap-2 cursor-pointer hover:text-primary ">
                                     <AiOutlineFileSearch className='w-4 h-4' />
                                     <span className="hidden sm:inline">View</span>
                                 </Button>

@@ -1,5 +1,6 @@
 import axiosInstance from "@/helper/axiosInterceptor"
 import toast from "react-hot-toast";
+import showErrorToast from "@/helper/showErrorToast"
 
 const handleFollowProcess = async(followingUserId:string) => {
     try{
@@ -9,8 +10,7 @@ const handleFollowProcess = async(followingUserId:string) => {
             return true
         }
     }catch(err){
-        console.log(err);
-        // toast.error()
+        showErrorToast(err);
     }
 }
 

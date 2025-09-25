@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Dialog, DialogContent, DialogDescription, DialogHeader } from "../ui/dialog"
+import { useState } from 'react'
+import { Dialog, DialogContent, DialogHeader } from "../ui/dialog"
 import { Textarea } from '../ui/textarea';
 import FeelingSelect from '../post/FeelingSelect';
 import { Share2 } from 'lucide-react';
@@ -7,6 +7,8 @@ import { feelingsObject } from '@/utils/feelings';
 import { Button } from '../ui/button';
 import axiosInstance from '@/helper/axiosInterceptor';
 import toast from 'react-hot-toast';
+import showErrorToast from "@/helper/showErrorToast"
+
 const ShareDialog = ({ open, onClose, postId }: { open: boolean, onClose: () => void, postId: string | null }) => {
     const [content, setContent] = useState<string>("check this !");
     const [feeling, setFeeling] = useState<string>("");
@@ -18,13 +20,13 @@ const ShareDialog = ({ open, onClose, postId }: { open: boolean, onClose: () => 
                 return;
             }
             setLoading(true);
-            const response = await axiosInstance.post(`/api/post/sharePost/${postId}`, { content, feeling,publishedAt:new Date() });
+            const response = await axiosInstance.post(`/api/post/sharePost/${postId}`, { content, feeling, publishedAt: new Date() });
             console.log(response);
-            if(response.status===200){
+            if (response.status === 200) {
                 toast.success(response.data?.msg || "post shared")
             }
         } catch (err) {
-            console.log(err);
+            showErrorToast(err);
         } finally {
             setLoading(false);
         }
@@ -38,7 +40,13 @@ const ShareDialog = ({ open, onClose, postId }: { open: boolean, onClose: () => 
                         Sharing Post <Share2 className='text-green-500' />
                     </div>
                 </DialogHeader>
-                <Textarea placeholder='content' className='border-2' value={content} onChange={(e) => { setContent(e.target.value) }} />
+                <div className='space-y-2'>
+                    <div>
+                        <label htmlFor="postConetent">Post Content</label>
+                    </div>
+                    <Textarea placeholder='Post Content' id='postConetent' className='border-2' value={content} onChange={(e) => { setContent(e.target.value) }} />
+
+                </div>
                 <div className='flex items-center gap-3'>
                     <FeelingSelect feeling={feeling} setFeeling={setFeeling} />
                     {
@@ -48,7 +56,7 @@ const ShareDialog = ({ open, onClose, postId }: { open: boolean, onClose: () => 
                         </span>
                     }
                 </div>
-                <Button disabled={loading} className='rounded-none text-slate-200 cursor-pointer' onClick={()=>{handleSharePost()}}>
+                <Button disabled={loading} className='rounded-none text-slate-200 cursor-pointer' onClick={() => { handleSharePost() }}>
                     share
                 </Button>
             </DialogContent>

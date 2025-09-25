@@ -1,5 +1,7 @@
 import axiosInstance from "@/helper/axiosInterceptor"
 import toast from "react-hot-toast"
+import showErrorToast from "@/helper/showErrorToast"
+
 // this is for cover image
 const handleUpdateProfileImage = async (newCoverImage: File | null, setSendingReq: React.Dispatch<boolean>) => {
     try {
@@ -13,7 +15,7 @@ const handleUpdateProfileImage = async (newCoverImage: File | null, setSendingRe
             return true;
         }
     } catch (err) {
-        console.log(err);
+        showErrorToast(err);
     } finally {
         setSendingReq(false);
     }

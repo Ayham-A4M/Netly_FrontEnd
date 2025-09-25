@@ -1,5 +1,7 @@
 import axiosInstance from "@/helper/axiosInterceptor"
 import toast from "react-hot-toast";
+import showErrorToast from "@/helper/showErrorToast"
+
 const onSubmitDeletePost = async (postId: string | null, setDeletePostId: React.Dispatch<React.SetStateAction<string | null>>, setPosts: React.Dispatch<any>) => {
     try {
         if (!postId) { toast.error('not specific post'); return; }
@@ -10,7 +12,7 @@ const onSubmitDeletePost = async (postId: string | null, setDeletePostId: React.
             setDeletePostId(null);
         }
     } catch (err) {
-        console.log(err);
+        showErrorToast(err);
     }
 }
 

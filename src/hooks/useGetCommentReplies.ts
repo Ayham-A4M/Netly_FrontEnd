@@ -1,5 +1,6 @@
 import axiosInstance from "@/helper/axiosInterceptor";
 import { useEffect, useState } from "react";
+import showErrorToast from "@/helper/showErrorToast"
 const useGetCommentReplies = (commentId: string | null) => {
     const [commentReplies, setCommentReplies] = useState<any | null>(null);
     const [loadingReplies, setLoadingReplies] = useState(false);
@@ -15,7 +16,7 @@ const useGetCommentReplies = (commentId: string | null) => {
                     setNumberOfPages(response?.data?.limit);
                 }
             } catch (err) {
-                console.log(err)
+                showErrorToast(err)
             } finally {
                 setLoadingReplies(false)
             }

@@ -1,6 +1,8 @@
 import axiosInstance from "@/helper/axiosInterceptor"
 import type { eventType } from "../CreateEvent"
 import toast from "react-hot-toast";
+import showErrorToast from "@/helper/showErrorToast"
+
 const handleCreateNewEvent = async (data: eventType, setSendingReq: React.Dispatch<React.SetStateAction<boolean>>):Promise<boolean> => {
     try {
         setSendingReq(true)
@@ -11,7 +13,7 @@ const handleCreateNewEvent = async (data: eventType, setSendingReq: React.Dispat
         }
         return false
     } catch (err) {
-        console.log(err);
+        showErrorToast(err);
         return false
     } finally {
         setSendingReq(false);

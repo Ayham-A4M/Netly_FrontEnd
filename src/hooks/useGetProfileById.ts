@@ -1,6 +1,8 @@
 // its use to get others profile 
 import axiosInstance from "@/helper/axiosInterceptor";
 import { useEffect, useState } from "react";
+import showErrorToast from "@/helper/showErrorToast"
+
 const useGetProfileById = (userId: string) => {
     const [posts, setPosts] = useState<any>(null)
     const [profile, setProfile] = useState<any>(null)
@@ -18,7 +20,7 @@ const useGetProfileById = (userId: string) => {
                     setIsEditableProfile(response.data?.isEditableProfile)
                 }
             } catch (err) {
-                console.log(err);
+                showErrorToast(err);
 
             }
         }

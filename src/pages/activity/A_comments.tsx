@@ -7,6 +7,7 @@ import DeleteDialog from "@/components/dialog/DeleteDialog";
 import axiosInstance from "@/helper/axiosInterceptor";
 import toast from "react-hot-toast";
 import A_updateComment from "@/components/activity/comments/A_updateComment";
+import showErrorToast from "@/helper/showErrorToast";
 
 
 const A_comments = () => {
@@ -24,7 +25,7 @@ const A_comments = () => {
         toast.success(response?.data?.msg || "comment deleted successfully");
       }
     } catch (err) {
-      console.log(err);
+      showErrorToast(err);
     }
   }
 
@@ -39,7 +40,7 @@ const A_comments = () => {
         toast.success(response?.data?.msg || "comment edited successfully");
       }
     } catch (err) {
-      console.log(err);
+      showErrorToast(err);
     }
   }
 

@@ -3,6 +3,8 @@ import axiosInstance from "@/helper/axiosInterceptor";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import Loader from "@/components/ui/loader";
+import showErrorToast from "@/helper/showErrorToast"
+
 const PostPage = () => {
     const [posts, setPosts] = useState<any[]>([]); // this should just contain one post :)
     const [loading, setLoaidng] = useState<boolean>(false);
@@ -16,7 +18,7 @@ const PostPage = () => {
                     setPosts(response?.data?.posts);
                 }
             } catch (err) {
-                console.log(err);
+                showErrorToast(err); 
             } finally {
                 setLoaidng(false)
             }

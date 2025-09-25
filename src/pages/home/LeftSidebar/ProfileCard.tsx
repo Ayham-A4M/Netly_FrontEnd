@@ -4,16 +4,16 @@ import { NavLink } from "react-router-dom"
 const ProfileCard = ({ profileCard }: { profileCard: any }) => {
     return (
         <NavLink to='/myprofile' replace>
-            <Card className="bg-background   gap-2 pt-0">
+            <Card className="bg-background rounded-[2px]  gap-2 pt-0">
                 <CardHeader className="flex justify-center px-0 items-center flex-col gap-2">
                     <div className="relative w-full mb-5">
-                        <div className={`w-full h-20  rounded-t-xl ${!profileCard && 'bg-zinc-300 dark:bg-zinc-700'}`} style={{ backgroundColor: `${profileCard?.coverImage ? '' : profileCard?.defaultCoverColor}` }}>
+                        <div className={`w-full h-24 ${!profileCard && 'bg-zinc-300 dark:bg-zinc-700'}`} style={{ backgroundColor: `${profileCard?.coverImage ? '' : profileCard?.defaultCoverColor}` }}>
                             {
                                 profileCard?.coverImage &&
-                                <img src={`http://localhost:8000${profileCard?.coverImage}`} className="w-full h-full object-cover rounded-t-xl" alt="coverImage" />
+                                <img src={`http://localhost:8000${profileCard?.coverImage}`} className="w-full h-full object-cover rounded-t-[2px]" alt="coverImage" />
                             }
                         </div>
-                        <Avatar className="size-12 ring-2 ring-primary/20 absolute top-[55%] left-[50%] translate-x-[-50%]">
+                        <Avatar className="size-12 ring-2 ring-primary/20 absolute top-[65%] left-[50%] translate-x-[-50%]">
                             <AvatarImage src={`http://localhost:8000${profileCard?.avatar}`} />
                             <AvatarFallback className="bg-gradient-primary text-slate-200" style={{ backgroundColor: `${profileCard?.defaultCoverColor ? profileCard?.defaultCoverColor : ''}` }}>{profileCard?.userName?.slice(0, 2)}</AvatarFallback>
                         </Avatar>

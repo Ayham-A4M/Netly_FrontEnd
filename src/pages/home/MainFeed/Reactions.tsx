@@ -11,7 +11,7 @@ const Reactions = ({ postId, postOwnerId, userReaction, reactionNumber }: { post
             <Button
                 variant="ghost"
                 size="sm"
-                className={`gap-2 transition-all ${reaction ? 'bg-red-400/10 rounded-xl' : ''} duration-150 select-none flex items-center`}
+                className={`gap-2 cursor-pointer  transition-all ${reaction ? 'bg-red-400/10 rounded-xl' : ''} duration-150 select-none flex items-center`}
                 onClick={() => { setReaction(prev => !prev); handleReactionProcess(!reaction, setReaction, postId, postOwnerId) }} // note handleREactionProcess is about choose wich route should hit delete reaction or submit reaction
             >
                 {

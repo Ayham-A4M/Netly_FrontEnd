@@ -5,6 +5,7 @@ import { useState } from "react";
 import DeleteDialog from "@/components/dialog/DeleteDialog";
 import axiosInstance from "@/helper/axiosInterceptor";
 import toast from "react-hot-toast";
+import showErrorToast from "@/helper/showErrorToast"
 import A_commentReactionsCard from "@/components/activity/commentReactions/A_commentReactionsCard";
 const A_commentReactions = () => {
   const { activity, setActivity, loading, page, setPage, limitOfPages } = useGetActivity('/api/activity/commentsReactions');
@@ -19,7 +20,7 @@ const A_commentReactions = () => {
         toast.success(response?.data?.msg || "comment deleted successfully");
       }
     } catch (err) {
-      console.log(err);
+      showErrorToast(err);
     }
   }
 
@@ -41,7 +42,7 @@ const A_commentReactions = () => {
             ))
           }
           {
-            (activity.length >0 && loading) &&
+            (activity.length > 0 && loading) &&
             <div className="flex items-center justify-center">
               <Loader />
             </div>

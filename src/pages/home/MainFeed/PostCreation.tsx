@@ -42,14 +42,14 @@ const PostCreation = () => {
 
 
     return (
-        <Card className="bg-gradient-card border-0 relative shadow-lg gap-y-2 ">
+        <Card className="bg-gradient-card border-0 relative shadow-lg gap-y-2 rounded-none">
             <CardHeader>
                 <div className="flex items-center gap-2 justify-between ">
                     <div className="flex items-center gap-1 text-primary">
-                        <span className="italic font-extralight text-[14px]">What's on your mind</span>
+                        <span className="font-extrabold text-[14px]">What's on your mind</span>
                         <BadgeQuestionMarkIcon className="size-3.5" />
                     </div>
-                    <div className="md:hidden">
+                    <div className="lg:hidden">
                         <ConfigMenu />
                     </div>
 
@@ -58,7 +58,7 @@ const PostCreation = () => {
             <CardContent className="">
                 <div className="flex gap-3">
 
-                    <Textarea placeholder="What's on your mind?" value={postContent || ""} className="bg-muted/50 max-h-72 overflow-auto" onChange={(e) => {
+                    <Textarea placeholder="Post Content" value={postContent || ""} className="bg-muted/50 max-h-72 overflow-auto" onChange={(e) => {
                         setPostContent(e.target.value);
                     }} />
                 </div>

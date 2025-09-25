@@ -1,6 +1,8 @@
 import axiosInstance from "@/helper/axiosInterceptor";
 import type { signupSchema } from "../SignUp"
 import toast from "react-hot-toast";
+import showErrorToast from "@/helper/showErrorToast"
+
 const handleSignUpProcess = async (data: signupSchema,setSendingReq:React.Dispatch<React.SetStateAction<boolean>>) => {
     try {
         setSendingReq(true)
@@ -9,7 +11,7 @@ const handleSignUpProcess = async (data: signupSchema,setSendingReq:React.Dispat
             toast.success(response.data?.msg || 'user saved please login now')
         }
     } catch (err) {
-        console.log(err)
+        showErrorToast(err);
     }finally{
         setSendingReq(false);
     }

@@ -8,6 +8,7 @@ import FeelingSelect from "../post/FeelingSelect"
 import { useEffect, useState } from "react"
 import axiosInstance from "@/helper/axiosInterceptor"
 import toast from "react-hot-toast"
+import showErrorToast from "@/helper/showErrorToast"
 
 
 interface props {
@@ -19,8 +20,10 @@ interface props {
 const EditPostDialog = ({ open, onClose, editPostId }: props) => {
     const [content, setContent] = useState<string>("");
     const [feeling, setFeeling] = useState<string>("");
+    const [loading,setLaoding]=useState<boolean>(false);
     useEffect(() => {
         const getPostContent = async () => {
+            setLaoding(true);
             try {
                 const response = await axiosInstance.get(`/api/post/${editPostId}`);
                 console.log(response)
@@ -31,7 +34,9 @@ const EditPostDialog = ({ open, onClose, editPostId }: props) => {
                 }
 
             } catch (err) {
-                console.log(err)
+                showErrorToast(err);
+            }finally{
+                setLaoding(false);
             }
         }
         if (editPostId)
@@ -40,13 +45,16 @@ const EditPostDialog = ({ open, onClose, editPostId }: props) => {
     }, [editPostId])
     const handleEditPost = async () => {
         try {
+            setLaoding(true);
             const response = await axiosInstance.put(`/api/post/${editPostId}`, { content, feeling });
             if (response.status === 200) {
                 toast.success(response.data?.msg || "Post updated successfully");
                 onClose();
             }
         } catch (err) {
-            console.log(err)
+            showErrorToast(err);
+        }finally{
+            setLaoding(false);
         }
     }
     return (
@@ -58,7 +66,7 @@ const EditPostDialog = ({ open, onClose, editPostId }: props) => {
                     Update Post
                 </DialogHeader>
                 <DialogDescription className="space-y-2">
-                    <Textarea value={content} onChange={(e) => { setContent(e.target.value) }} className="max-h-96 overflow-" />
+                    <Textarea value={content} onChange={(e) => { setContent(e.target.value) }} className="max-h-96 overflow-auto text-popover-foreground" />
                     <div className="flex items-center gap-2">
                         <FeelingSelect feeling={feeling} setFeeling={setFeeling} />
                         {
@@ -67,7 +75,7 @@ const EditPostDialog = ({ open, onClose, editPostId }: props) => {
 
                         }
                     </div>
-                    <Button className="w-full rounded-xl cursor-pointer text-slate-200" onClick={(e) => { e.preventDefault(); handleEditPost() }}>
+                    <Button disabled={loading} className="w-full rounded-xl cursor-pointer text-slate-200" onClick={(e) => { e.preventDefault(); handleEditPost() }}>
                         Edit
                     </Button>
                 </DialogDescription>

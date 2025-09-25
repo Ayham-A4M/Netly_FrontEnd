@@ -1,5 +1,6 @@
 import axiosInstance from "@/helper/axiosInterceptor"
 import { useEffect, useState } from "react";
+
 const useGetUser = () => {
     const [isUser, setUser] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(true);
@@ -14,7 +15,7 @@ const useGetUser = () => {
                     if(response?.data?.numberOfNotification > 0){setNumberOfNotification(response?.data?.numberOfNotification)}
                 }
             } catch (err) {
-                console.log(err);
+                return
             } finally {
                 setLoading(false)
             }

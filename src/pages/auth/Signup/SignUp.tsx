@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Logo from '../../../assets/svgs/logo.svg'
-import signupPic from '../../../assets/images/signup.png'
 import {
     Card,
     CardHeader,
