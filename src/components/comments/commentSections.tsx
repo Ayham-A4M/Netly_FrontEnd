@@ -9,19 +9,22 @@ import { createContext } from "react";
 import useGetCommentReplies from "@/hooks/useGetCommentReplies";
 import ShowReplies from "./ShowReplies";
 import handleGetMainComment from "./handler/handleGetMainComment";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 interface CommentReplyContext {
     commentId: string | null,
     setCommentId: React.Dispatch<React.SetStateAction<string | null>>,
-    setCommentOwnerId:React.Dispatch<React.SetStateAction<string | null>>,
+    setCommentOwnerId: React.Dispatch<React.SetStateAction<string | null>>,
 }
 export const CommentReplyContext = createContext<CommentReplyContext | null>(null);
 
 
 const CommentSections = ({ postId, setPostId, postOwnerId }: { postId: string, setPostId: React.Dispatch<React.SetStateAction<string | null>>, postOwnerId: string | null }) => {
-    const { comments, setComments, setPage, loading } = useGetComments(postId);
+    const { comments, setPage, loading, page, limitOfPages } = useGetComments(postId);
     const [commentId, setCommentId] = useState<string | null>(null);
-    const { commentReplies, setCommentReplies, setPageOfReplies, loadingReplies } = useGetCommentReplies(commentId);
+    const { commentReplies, loadingReplies, numberOfPages, pageOfReplies, setPageOfReplies } = useGetCommentReplies(commentId);
     const [commentOwnerId, setCommentOwnerId] = useState<null | string>(null);
+    useInfiniteScroll(page, limitOfPages, comments, loading, setPage);
+    useInfiniteScroll(pageOfReplies, numberOfPages, commentReplies, loadingReplies, setPageOfReplies)
     return (
         <div className='h-[90vh]  shadow-2xl rounded-t-2xl w-full overflow-y-scroll bg-background z-[9999] fixed bottom-0 right-0'>
             <div className="flex justify-between flex-col gap-3 w-full h-full">
@@ -34,23 +37,45 @@ const CommentSections = ({ postId, setPostId, postOwnerId }: { postId: string, s
                         <IoMdClose className='text-popover-foreground size-7' role='button' onClick={() => { setPostId(null) }} />
 
                     </div>
-                    <CommentReplyContext.Provider value={{ commentId, setCommentId,setCommentOwnerId }}>
+                    <CommentReplyContext.Provider value={{ commentId, setCommentId, setCommentOwnerId }}>
                         {
-                            (loading || loadingReplies) ?
-                                <div className="flex w-full py-16 justify-center items-center">
+                            (loading && (!comments || comments?.length === 0)) ?
+                                <div className="flex h-screen w-full py-16 justify-center items-center">
                                     <Loader />
                                 </div>
                                 :
-                                (commentReplies?.length == 0 && commentId) ?
-                                    <NoComments />
+                                (loadingReplies && (!commentReplies || commentReplies?.length === 0))
+                                    ?
+                                    <div className="flex h-screen w-full py-16 justify-center items-center">
+                                        <Loader />
+                                    </div>
                                     :
-                                    (commentReplies && commentId) ?
-                                        <ShowReplies commentReplies={commentReplies} mainComment={handleGetMainComment(commentId, comments)} />
+                                    (commentReplies?.length == 0 && commentId) ?
+                                        <NoComments />
                                         :
-                                        comments || commentReplies ?
-                                            <ShowComments comments={comments} />
+                                        (commentReplies && commentId) ?
+                                            <div className="">
+                                                <ShowReplies commentReplies={commentReplies} mainComment={handleGetMainComment(commentId, comments)} />
+                                                {
+                                                    (commentReplies && loadingReplies) &&
+                                                    <div className="py-2 flex justify-center items-center">
+                                                        <Loader />
+                                                    </div>
+                                                }
+                                            </div>
                                             :
-                                            <NoComments />
+                                            comments || commentReplies ?
+                                                <div>
+                                                    <ShowComments comments={comments} />
+                                                    {
+                                                        (comments && loading) &&
+                                                        <div className="py-2 flex justify-center items-center">
+                                                            <Loader />
+                                                        </div>
+                                                    }
+                                                </div>
+                                                :
+                                                <NoComments />
                         }
                     </CommentReplyContext.Provider>
 

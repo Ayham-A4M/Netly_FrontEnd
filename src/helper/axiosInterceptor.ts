@@ -30,7 +30,7 @@ axiosInstance.interceptors.response.use(
 
             try {
                 // Call your refresh token endpoint
-                const refreshResponse = await axiosInstance.post(`/api/auth/refreshtoken`);
+                await axiosInstance.post(`/api/auth/refreshtoken`);
 
                 // Retry queued requests
                 failedRequests.forEach(pending => pending.resolve());

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CommentSections from "../comments/commentSections";
 import DeleteDialog from "../dialog/DeleteDialog";
 import Post from "./Post";
@@ -7,7 +7,6 @@ import useEditScroll from "@/hooks/useEditScroll";
 import EditPostDialog from "../dialog/EditPostDialog";
 import ShowImageDialog from "../dialog/ShowImageDialog";
 import ShareDialog from "../dialog/ShareDialog";
-import { useMemo } from "react";
 interface props { posts: any[], setPosts?: React.Dispatch<any> }
 
 

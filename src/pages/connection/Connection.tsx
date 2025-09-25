@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import ConnectionCard from './ConnectionCard';
 import { Search } from 'lucide-react'
 const Connection = () => {
-    const { loading, connection, setConnection, getFollowers, setGetFollowers, page, setPage, limitOfPages, searchByName, setSearchByName } = useGetConnections()
+    const { loading, connection, getFollowers, setGetFollowers, page, setPage, limitOfPages, searchByName, setSearchByName } = useGetConnections()
     useInfiniteScroll(page, limitOfPages, connection, loading, setPage);
     return (
 

@@ -2,18 +2,15 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import AvatarFallBack from '../helperComponent/AvatarFallBack'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { MessageSquare, Share2 } from 'lucide-react'
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useEffect, useRef, useState } from 'react'
-import SelectReaction from '../../pages/home/MainFeed/Reactions'
 import calculateTime from '@/helper/calculateTime'
-import PostDropMenu from './PostDropMenue'
 import { Link } from 'react-router-dom'
-import Post from './Post'
+
 import { feelingsObject } from '@/utils/feelings'
-interface props { e: any, setImagePath: React.Dispatch<React.SetStateAction<string | null>>, setPostId: React.Dispatch<React.SetStateAction<string | null>> }
-const SharedPost = ({ e, setImagePath, setPostId }: props) => {
+interface props { e: any, setImagePath: React.Dispatch<React.SetStateAction<string | null>> }
+const SharedPost = ({ e, setImagePath }: props) => {
     const [showMore, setShowMore] = useState(false);
     const pRef = useRef<HTMLParagraphElement>(null);
     const handleDisplayContent = () => {

@@ -7,7 +7,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import AvatarFallBack from "@/components/helperComponent/AvatarFallBack";
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import handleInterestingInProcess from "./handler/handleInterestingInProcess";
 import { Link } from "react-router-dom";
 import handleUnInterestingInProcess from "./handler/handleUnInterestingInProcess";
@@ -73,7 +73,7 @@ const EventCard = ({ eventInfo, eventType, interest }: { eventInfo: any, eventTy
                     <span>{eventInfo?.userName}</span>
                 </Link>
                 {
-                    isBefore(new Date(eventInfo?.date), new Date()) && 
+                    isBefore(new Date(eventInfo?.date), new Date()) &&
                     <span className="text-primary text-[.8rem] font-extrabold">event ended</span>
                 }
 

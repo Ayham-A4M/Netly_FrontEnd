@@ -143,7 +143,7 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
                 {/* shared post section it will shown if only the post is shared */}
                 {
                     e?.sharedPost &&
-                    <SharedPost e={e?.sharedPost} setImagePath={setImagePath} setPostId={setPostId} />
+                    <SharedPost e={e?.sharedPost} setImagePath={setImagePath} />
                 }
 
                 {/* reactions with post */}

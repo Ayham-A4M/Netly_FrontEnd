@@ -7,17 +7,9 @@ import useGetEvents from "@/hooks/useGetEvents";
 import EventCard from "./EventCard";
 import Loader from "@/components/ui/loader";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
-const obj = {
-    title: "The MERN Stack Workshop: Build a Full-Stack App in a Day",
-    description: "Ready to bridge the gap between front-end and back-end development? Join our intensive online workshop dedicated to the MERN stack. We'll guide you through building a fully functional application from scratch using MongoDB, Express.js, React, and Node.js.",
-    date: new Date(),
-    userName: "Ayham Abo Ajeeb",
-    defaultCoverColor: "#A22BBB",
-    eventType: "online",
-    meetingApplication: "Google Meet",
-}
+
 const EventsPage = () => {
-    const { events, setEvents, filter, setFilter, loading, setLoading, page, setPage, limitofPages, setLimitOfPages } = useGetEvents()
+    const { events, filter, setFilter, loading, page, setPage, limitofPages } = useGetEvents()
     const [showCreateEvent, setShowCreateEvent] = useState<boolean>(false);
     useInfiniteScroll(page, limitofPages, events, loading, setPage)
     return (
@@ -28,17 +20,17 @@ const EventsPage = () => {
 
                 <div className='flex justify-start gap-2 items-center '>
                     <button className={`px-2 py-1 text-[12px] rounded-full cursor-pointer ${filter ? "bg-green-700 text-slate-200" : "border-2 border-green-700 text-green-700"}  `}
-                        onClick={(e) => { e.preventDefault(); setPage(1);setFilter(true) }}
+                        onClick={(e) => { e.preventDefault(); setPage(1); setFilter(true) }}
                     >
                         my events
                     </button>
                     <button className={`px-2 py-1 text-[12px] rounded-full cursor-pointer ${(filter == false && filter != null) ? "bg-blue-700 text-slate-200" : "border-2 border-blue-700 text-blue-700"}  `}
-                        onClick={(e) => { e.preventDefault(); setPage(1);setFilter(false) }}
+                        onClick={(e) => { e.preventDefault(); setPage(1); setFilter(false) }}
                     >
                         join events
                     </button>
                     <button className={`px-2 py-1 text-[12px] rounded-full cursor-pointer ${filter == null ? "bg-orange-600 text-slate-200" : "border-2 border-orange-600 text-orange-600"}  `}
-                        onClick={(e) => { e.preventDefault(); setPage(1);setFilter(null) }}
+                        onClick={(e) => { e.preventDefault(); setPage(1); setFilter(null) }}
                     >
                         upcoming events
                     </button>
