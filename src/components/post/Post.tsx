@@ -82,7 +82,7 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
 
 
                             <img
-                                src={`http://localhost:8000${e.images[currentImageIdx]}`}
+                                src={`${e.images[currentImageIdx]}`}
                                 alt="postImage"
                                 className="rounded-[2px] object-cover w-full aspect-[5/3] cursor-pointer"
                                 style={{ maxWidth: '100%', height: 'auto' }}
