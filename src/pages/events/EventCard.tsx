@@ -67,7 +67,7 @@ const EventCard = ({ eventInfo, eventType, interest }: { eventInfo: any, eventTy
                 <Link to="/userProfile" state={{ userId: eventInfo?.userId }} className="flex items-center gap-2 text-[.8rem]">
                     <span>Create By : </span>
                     <Avatar className="size-6">
-                        <AvatarImage src={(eventInfo?.avatar && `http://localhost:8000${eventInfo?.avatar}`)} />
+                        <AvatarImage src={(eventInfo?.avatar && `${eventInfo?.avatar}`)} />
                         <AvatarFallBack name={eventInfo?.userName} backgroundColor={eventInfo?.defaultCoverColor} />
                     </Avatar>
                     <span>{eventInfo?.userName}</span>

@@ -33,7 +33,7 @@ const AvatarPhoto = ({ isEditable, avatar, userName, defaultCoverColor }: props)
 
         <div className="relative w-fit">
             <Avatar className="mb-4  text-3xl sm:mb-0 size-32 sm:size-40 border-4 border-background overflow-hidden shadow-xl">
-                <AvatarImage src={avatarPreview || (avatar && `http://localhost:8000${avatar}`)} />
+                <AvatarImage src={avatarPreview || (avatar && `${avatar}`)} />
                 <AvatarFallBack name={userName} backgroundColor={defaultCoverColor} />
             </Avatar>
             {

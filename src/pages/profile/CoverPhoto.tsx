@@ -37,7 +37,7 @@ const CoverPhoto = ({ isEditable, coverImage }: { isEditable: boolean, coverImag
                     :
                     (coverImage) ?
                         <img
-                            src={`http://localhost:8000${coverImage}`}
+                            src={`${coverImage}`}
                             alt="Profile cover"
                             className="w-full h-full object-cover"
                         />

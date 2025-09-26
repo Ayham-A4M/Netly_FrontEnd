@@ -71,7 +71,7 @@ const RightSideBar = () => {
                             followers.map((follower) => (
                                 <div key={follower?._id} className="flex items-center gap-3 p-2 rounded-md hover:bg-social-blue-light transition-colors">
                                     <Avatar className="size-8">
-                                        <AvatarImage src={`http://localhost:8000${follower?.avatar}`} />
+                                        <AvatarImage src={`${follower?.avatar}`} />
                                         <AvatarFallBack backgroundColor={follower?.defaultCoverColor} name={follower?.userName} />
                                     </Avatar>
                                     <div className="flex flex-col leading-[18px]">

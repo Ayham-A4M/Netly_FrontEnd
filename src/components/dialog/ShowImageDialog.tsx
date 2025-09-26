@@ -11,7 +11,7 @@ const ShowImageDialog = ({ onClose, imagePath }: { onClose: () => void, imagePat
     return (
         <Dialog open={isOpen} onOpenChange={() => { onClose();setIsOpen(false) }}>
             <DialogContent className="p-0 shadow-none rounded-none border-0">
-                <img src={`http://localhost:8000${imagePath}`} alt="postImage"
+                <img src={`${imagePath}`} alt="postImage"
                     className="w-auto h-auto rounded-[2px]"
                 />
             </DialogContent>

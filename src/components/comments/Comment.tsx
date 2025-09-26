@@ -15,7 +15,7 @@ const Comment = ({ e, isReply }: { e: any, isReply: boolean }) => {
             <div className="flex items-center gap-2 mb-3">
                 <Link to='/userprofile' className='cursor-pointer' state={{ userId: e?.userId }} onClick={() => { addScroll() }}>
                     <Avatar className="size-8">
-                        <AvatarImage src={`http://localhost:8000${e?.avatar}`} />
+                        <AvatarImage src={`${e?.avatar}`} />
                         <AvatarFallBack name={e?.userName} backgroundColor={e?.defaultCoverColor} />
                     </Avatar>
                 </Link>

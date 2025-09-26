@@ -17,7 +17,7 @@ const NotificationCard = ({ notification }: { notification: any }) => {
                                 </>
                             }
                             <Avatar className="size-9">
-                                <AvatarImage src={`http://localhost:8000${notification?.avatar}`} />
+                                <AvatarImage src={`${notification?.avatar}`} />
                                 <AvatarFallBack name={notification?.userName} backgroundColor={notification?.defaultCoverColor} />
                             </Avatar>
                             <p className="md:text-md text-md text-popover-foreground leading-4">
@@ -39,7 +39,7 @@ const NotificationCard = ({ notification }: { notification: any }) => {
                             </>
                         }
                         <Avatar className="size-9">
-                            <AvatarImage src={`http://localhost:8000${notification?.avatar}`} />
+                            <AvatarImage src={`${notification?.avatar}`} />
                             <AvatarFallBack name={notification?.userName} backgroundColor={notification?.defaultCoverColor} />
                         </Avatar>
                         <p className="md:text-md text-md text-popover-foreground leading-4">

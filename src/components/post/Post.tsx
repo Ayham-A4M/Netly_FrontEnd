@@ -50,7 +50,7 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
                     <div className="flex items-center gap-3">
                         <Link to={`/userprofile`} className='cursor-pointer' state={{ userId: e?.userId }}>
                             <Avatar className="size-9">
-                                <AvatarImage src={(e?.avatar && `http://localhost:8000${e?.avatar}`)} loading='lazy' />
+                                <AvatarImage  src={(e?.avatar && `${e?.avatar}`)} loading='lazy' />
                                 <AvatarFallBack name={e?.userName} backgroundColor={e?.defaultCoverColor} />
                             </Avatar>
                         </Link>

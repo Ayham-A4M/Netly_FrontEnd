@@ -10,11 +10,11 @@ const ProfileCard = ({ profileCard }: { profileCard: any }) => {
                         <div className={`w-full h-24 ${!profileCard && 'bg-zinc-300 dark:bg-zinc-700'}`} style={{ backgroundColor: `${profileCard?.coverImage ? '' : profileCard?.defaultCoverColor}` }}>
                             {
                                 profileCard?.coverImage &&
-                                <img src={`http://localhost:8000${profileCard?.coverImage}`} className="w-full h-full object-cover rounded-t-[2px]" alt="coverImage" />
+                                <img src={`${profileCard?.coverImage}`} className="w-full h-full object-cover rounded-t-[2px]" alt="coverImage" />
                             }
                         </div>
                         <Avatar className="size-12 ring-2 ring-primary/20 absolute top-[65%] left-[50%] translate-x-[-50%]">
-                            <AvatarImage src={`http://localhost:8000${profileCard?.avatar}`} />
+                            <AvatarImage src={`${profileCard?.avatar}`} />
                             <AvatarFallback className="bg-gradient-primary text-slate-200" style={{ backgroundColor: `${profileCard?.defaultCoverColor ? profileCard?.defaultCoverColor : ''}` }}>{profileCard?.userName?.slice(0, 2)}</AvatarFallback>
                         </Avatar>
                     </div>
