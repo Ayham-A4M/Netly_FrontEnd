@@ -33,7 +33,7 @@ const AvatarPhoto = ({ isEditable, avatar, userName, defaultCoverColor }: props)
 
         <div className="relative w-fit">
             <Avatar className="mb-4  text-3xl sm:mb-0 size-32 sm:size-40 border-4 border-background overflow-hidden shadow-xl">
-                <AvatarImage src={avatarPreview || (avatar && `${avatar}`)} />
+                <AvatarImage alt="user-image" src={avatarPreview || (avatar && `${avatar}`)} />
                 <AvatarFallBack name={userName} backgroundColor={defaultCoverColor} />
             </Avatar>
             {
@@ -47,8 +47,8 @@ const AvatarPhoto = ({ isEditable, avatar, userName, defaultCoverColor }: props)
                         <label htmlFor="selectAvatarPhoto" className="absolute bottom-3 right-[-4px] z-50 cursor-pointer"><TbPhotoEdit className="size-6  " /></label>
                         :
                         <div className="flex  items-center gap-3.5  absolute bottom-3 right-[-50px] z-50 cursor-pointer ">
-                            <FaCircleCheck className="size-6 text-green-400" role="button" onClick={() => { updateAvatar() }} />
-                            <FaCircleXmark className="size-6 text-red-300" role="button" onClick={() => { setAvatarPreview(""); setNewAvatar(null) }} />
+                            <FaCircleCheck name="confirm-edit-avatar" className="size-6 text-green-400" role="button" onClick={() => { updateAvatar() }} />
+                            <FaCircleXmark name="cancel-edit-avatar" className="size-6 text-red-300" role="button" onClick={() => { setAvatarPreview(""); setNewAvatar(null) }} />
                         </div>
                 )
             }

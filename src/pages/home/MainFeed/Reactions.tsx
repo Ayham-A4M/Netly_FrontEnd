@@ -9,6 +9,7 @@ const Reactions = ({ postId, postOwnerId, userReaction, reactionNumber }: { post
     return (
         <div className='relative w-fit'>
             <Button
+                name="reaction-post"
                 variant="ghost"
                 size="sm"
                 className={`gap-2 cursor-pointer  transition-all ${reaction ? 'bg-red-400/10 rounded-xl' : ''} duration-150 select-none flex items-center`}

@@ -15,7 +15,7 @@ const PostDropMenu = ({ setDeletePostId, postId,setEditPostId }: { setDeletePost
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon" className="cursor-pointer rounded-full shadow-none">
+                <Button name="post-settings" variant="outline" size="icon" className="cursor-pointer rounded-full shadow-none">
                     <MoreHorizontal className="size-4" />
                 </Button>
             </DropdownMenuTrigger>

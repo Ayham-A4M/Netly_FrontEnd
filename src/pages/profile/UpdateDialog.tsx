@@ -152,7 +152,7 @@ const UpdateDialog = ({ setProfile, profile }: { setProfile: React.Dispatch<any>
                             )}
                         />
 
-                        <Button disabled={sendingReq} type="submit" className='cursor-pointer text-slate-200 w-full'>Submit</Button>
+                        <Button name="submit" disabled={sendingReq} type="submit" className='cursor-pointer text-slate-200 w-full'>Submit</Button>
 
                     </form>
                 </Form>

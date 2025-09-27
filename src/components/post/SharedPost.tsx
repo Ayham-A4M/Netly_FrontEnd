@@ -43,7 +43,7 @@ const SharedPost = ({ e, setImagePath }: props) => {
                     <div className="flex items-center gap-3">
                         <Link to={`/userprofile`} className='cursor-pointer' state={{ userId: e?.userId }}>
                             <Avatar className="size-9">
-                                <AvatarImage src={(e?.avatar && `${e?.avatar}`)} loading='lazy' />
+                                <AvatarImage alt='user-image' src={(e?.avatar && `${e?.avatar}`)} loading='lazy' />
                                 <AvatarFallBack name={e?.userName} backgroundColor={e?.defaultCoverColor} />
                             </Avatar>
                         </Link>
@@ -127,7 +127,7 @@ const SharedPost = ({ e, setImagePath }: props) => {
                 <div className='flex items-center justify-end'>
                    
                         <Link to={`/post/${e?._id}`}>
-                            <Button variant="ghost" size="sm" className="gap-2 cursor-pointer text-primary ">
+                            <Button variant="ghost" name='share-post' size="sm" className="gap-2 cursor-pointer text-primary ">
                                 <AiOutlineFileSearch className='w-4 h-4' />
                                 <span className="hidden sm:inline">View</span>
                             </Button>

@@ -85,7 +85,7 @@ const PostCreation = () => {
                 </div>
                 <div className="flex justify-end w-full">
 
-                    <Button disabled={sendingReq} className="cursor-pointer text-primary hover:text-white hover:bg-primary duration-300 transition-colors" size="icon" variant="outline"
+                    <Button name="submit-post" disabled={sendingReq} className="cursor-pointer text-primary hover:text-white hover:bg-primary duration-300 transition-colors" size="icon" variant="outline"
                         onClick={() => {
                             createPost()
                         }}
@@ -107,7 +107,7 @@ const PostCreation = () => {
 
                         </div>
                         <div >
-                            <Button className="text-[9px] bg-red-400 dark:bg-red-400 text-slate-100" variant="outline" size="icon" onClick={() => { setPostImages(null); setPreviewImages([]) }}>
+                            <Button name="discard-images" className="text-[9px] bg-red-400 dark:bg-red-400 text-slate-100" variant="outline" size="icon" onClick={() => { setPostImages(null); setPreviewImages([]) }}>
                                 Discard
                             </Button>
                         </div>

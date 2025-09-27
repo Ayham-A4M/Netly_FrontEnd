@@ -50,7 +50,7 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
                     <div className="flex items-center gap-3">
                         <Link to={`/userprofile`} className='cursor-pointer' state={{ userId: e?.userId }}>
                             <Avatar className="size-9">
-                                <AvatarImage  src={(e?.avatar && `${e?.avatar}`)} loading='lazy' />
+                                <AvatarImage  alt='user-image' src={(e?.avatar && `${e?.avatar}`)} loading='lazy' />
                                 <AvatarFallBack name={e?.userName} backgroundColor={e?.defaultCoverColor} />
                             </Avatar>
                         </Link>
@@ -151,18 +151,18 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
                     <div className="flex items-center justify-between w-full  md:gap-4 md:justify-start">
                         <SelectReaction userReaction={e.userReaction} postOwnerId={e.userId} postId={e._id} reactionNumber={e?.loveCount} />
 
-                        <Button variant="ghost" size="sm" className="gap-2 cursor-pointer " onClick={() => { setPostId(e?._id); setPostOwnerId(e?.userId) }}>
+                        <Button name='comments' variant="ghost" size="sm" className="gap-2 cursor-pointer " onClick={() => { setPostId(e?._id); setPostOwnerId(e?.userId) }}>
                             <MessageSquare className="w-4 h-4" />
                             <span className="hidden sm:inline">Comment</span> {e.commentsCount}
                         </Button>
-                        <Button variant="ghost" size="sm" className="gap-2 cursor-pointer " onClick={() => { setSharePostId(e?._id) }}>
+                        <Button name='share-post' variant="ghost" size="sm" className="gap-2 cursor-pointer " onClick={() => { setSharePostId(e?._id) }}>
                             <Share2 className="w-4 h-4" />
                             <span className="hidden sm:inline">Share</span> {e.sharedCount}
                         </Button>
                         {
                             !window.location.href.includes("/post/") &&
                             <Link to={`/post/${e?._id}`}>
-                                <Button variant="ghost" size="sm" className="gap-2 cursor-pointer hover:text-primary ">
+                                <Button name='view-post' variant="ghost" size="sm" className="gap-2 cursor-pointer hover:text-primary ">
                                     <AiOutlineFileSearch className='w-4 h-4' />
                                     <span className="hidden sm:inline">View</span>
                                 </Button>

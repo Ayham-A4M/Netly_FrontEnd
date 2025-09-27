@@ -31,14 +31,14 @@ const CoverPhoto = ({ isEditable, coverImage }: { isEditable: boolean, coverImag
                 (imagePreview) ?
                     <img
                         src={imagePreview}
-                        alt="Profile cover"
+                        alt="profile-cover"
                         className="w-full h-full object-cover"
                     />
                     :
                     (coverImage) ?
                         <img
                             src={`${coverImage}`}
-                            alt="Profile cover"
+                            alt="profile-cover"
                             className="w-full h-full object-cover"
                         />
                         :
@@ -59,13 +59,13 @@ const CoverPhoto = ({ isEditable, coverImage }: { isEditable: boolean, coverImag
                             </label>
                             :
                             <div className='absolute flex flex-row top-4 right-1 gap-3 items-center'>
-                                <Button disabled={sendingReq} className='bg-red-400 dark:bg-red-400 text-slate-100  cursor-pointer' variant="outline" size="icon" onClick={() => {
+                                <Button name='cancel-editimage' disabled={sendingReq} className='bg-red-400 dark:bg-red-400 text-slate-100  cursor-pointer' variant="outline" size="icon" onClick={() => {
                                     setImagePreview("");
                                     setNewCoverImage(null)
                                 }}>
                                     <IoIosCloseCircleOutline />
                                 </Button>
-                                <Button disabled={sendingReq} className='bg-primary dark:bg-primary text-slate-100 cursor-pointer' variant="outline" size="icon" onClick={() => { updateProcess() }}>
+                                <Button name='confirm-editimage' disabled={sendingReq} className='bg-primary dark:bg-primary text-slate-100 cursor-pointer' variant="outline" size="icon" onClick={() => { updateProcess() }}>
                                     <IoIosCheckmarkCircleOutline />
                                 </Button>
                             </div>
