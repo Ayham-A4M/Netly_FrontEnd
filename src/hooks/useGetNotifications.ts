@@ -1,5 +1,5 @@
 import axiosInstance from "@/helper/axiosInterceptor";
-import { useEffect, useState } from "react"
+import { useLayoutEffect, useState } from "react"
 import showErrorToast from "@/helper/showErrorToast"
 
 const useGetNotifications = () => {
@@ -7,7 +7,7 @@ const useGetNotifications = () => {
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [limitOfPages, setLimitOfPages] = useState<number>(1);
-    useEffect(() => {
+    useLayoutEffect(() => { // we need useLayoutEffect to get the data before the useReadNotifications runs
         const fetchNotifications = async () => {
             try {
                 setLoading(true);

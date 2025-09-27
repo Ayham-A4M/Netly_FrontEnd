@@ -3,12 +3,9 @@ import { useEffect } from "react";
 const useInfiniteScroll = (page: number, limitOfPages: number, data: any[], loading: boolean, setPage:React.Dispatch<React.SetStateAction<number>>
 ) => {
     const onScroll = () => {
-        console.log("page : ", page, "   ", "limit  : ", limitOfPages);
-
-        if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
-            console.log("(page < limitOfPages)", " = ", `(${page} < ${limitOfPages})`)
+        
+        if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight - 100) {
             if ((page < limitOfPages) && (data.length > 0) && !loading) {
-                console.log("done");
                 setPage((prev:number) => prev + 1)
             }
         }

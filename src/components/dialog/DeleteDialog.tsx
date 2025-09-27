@@ -8,7 +8,9 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog"
+import { useState } from "react"
 const DeleteDialog = ({ open, onClose, onSubmit }: { open: boolean, onClose: () => void, onSubmit: () => void }) => {
+    const [loading, setLoading] = useState(false);
     return (
         <Dialog open={open} onOpenChange={() => { onClose() }} >
             <DialogContent>
@@ -29,9 +31,18 @@ const DeleteDialog = ({ open, onClose, onSubmit }: { open: boolean, onClose: () 
 
                 <DialogFooter>
                     <DialogClose asChild>
-                        <Button variant="outline" className="cursor-pointer" onClick={() => { onClose }}>Cancel</Button>
+                        <Button disabled={loading} variant="outline" className="cursor-pointer" onClick={() => { onClose }}>Cancel</Button>
                     </DialogClose>
-                    <Button type="submit" className="bg-red-500 text-slate-200 cursor-pointer" onClick={() => { onSubmit() }}>Delete</Button>
+                    <Button type="submit" disabled={loading} className="bg-red-500 text-slate-200 cursor-pointer" onClick={() => {
+                        try {
+                            setLoading(true);
+                            onSubmit()
+                        } catch (err) {
+
+                        } finally {
+                            setLoading(false);
+                        }
+                    }}>Delete</Button>
                 </DialogFooter>
             </DialogContent>
 
