@@ -15,6 +15,7 @@ import SharedPost from './SharedPost'
 interface props { e: any, setSharePostId: React.Dispatch<React.SetStateAction<string | null>>, setImagePath: React.Dispatch<React.SetStateAction<string | null>>, setDeletePostId: React.Dispatch<React.SetStateAction<string | null>>, setPostId: React.Dispatch<React.SetStateAction<string | null>>, setPostOwnerId: React.Dispatch<React.SetStateAction<string | null>>, setEditPostId: React.Dispatch<React.SetStateAction<string | null>> }
 const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, setPostOwnerId, setEditPostId }: props) => {
     const [showMore, setShowMore] = useState(false);
+    const [currentImageIdx, setCurrentImageIdx] = useState(0);
     const pRef = useRef<HTMLParagraphElement>(null);
     const handleDisplayContent = () => {
         if (!showMore) {
@@ -29,9 +30,8 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
         if (pRef.current?.clientHeight) {
             setIsThereReadMore(pRef.current?.clientHeight >= 120);
         }
-    }, [pRef.current?.clientHeight])
+    }, [])
 
-    const [currentImageIdx, setCurrentImageIdx] = useState(0);
 
 
 
