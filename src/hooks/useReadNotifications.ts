@@ -9,6 +9,7 @@ const useReadNotifications = (notifications: any) => {
     useEffect(() => {
         const readNotification = async () => {
             try {
+                console.log(`effect read runs`,"   ",notifications)
                 const response = await axiosInstance.post('/api/notification/read');
                 if (response.status === 200) {
                     context?.setNumberOfNotification(null);
@@ -17,7 +18,7 @@ const useReadNotifications = (notifications: any) => {
                 showErrorToast(err);
             }
         }
-        if (!!context?.numberOfNotification && notifications) {
+        if (!!context?.numberOfNotification && notifications !== null) {
             readNotification();
         }
     }, [notifications])

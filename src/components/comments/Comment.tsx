@@ -11,7 +11,7 @@ const Comment = ({ e, isReply }: { e: any, isReply: boolean }) => {
 
     const commentContext = useContext(CommentReplyContext);
     return (
-        <div className="space-y-2.5 p-2 pb-4 border-b-[1px] border-gray-300 dark:border-gray-700" key={e._id}>
+        <div className="space-y-2.5 break-words p-2 pb-4 border-b-[1px] border-gray-300 dark:border-gray-700" key={e._id}>
             <div className="flex items-center gap-2 mb-3">
                 <Link to='/userprofile' className='cursor-pointer' state={{ userId: e?.userId }} onClick={() => { addScroll() }}>
                     <Avatar className="size-8">

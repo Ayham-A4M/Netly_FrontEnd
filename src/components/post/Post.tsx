@@ -44,7 +44,7 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
 
 
     return (
-        <Card className="bg-gradient-card border-0 shadow-lg gap-y-2">
+        <Card className="bg-gradient-card border-0 break-words shadow-lg gap-y-2">
             <CardHeader className="pb-4 px-2">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">

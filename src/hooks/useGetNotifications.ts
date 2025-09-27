@@ -11,6 +11,7 @@ const useGetNotifications = () => {
         const fetchNotifications = async () => {
             try {
                 setLoading(true);
+                console.log("effect get notifications runs","   ",notifications)
                 const response = await axiosInstance.get(`/api/notification/getNotification?page=${page}`);
                 if (response.status === 200) {
                     if (notifications) {
