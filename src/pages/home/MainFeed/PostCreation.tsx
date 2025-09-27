@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { BadgeQuestionMarkIcon } from "lucide-react"
-import { useState } from "react"
+import React, { useState } from "react"
 import handleCreateNormalPost from "./handler/handleCreateNormalPost"
 import { BsImages } from "react-icons/bs";
 import { RiSendPlaneFill } from "react-icons/ri";
@@ -121,4 +121,4 @@ const PostCreation = () => {
     )
 }
 
-export default PostCreation
+export default React.memo(PostCreation)

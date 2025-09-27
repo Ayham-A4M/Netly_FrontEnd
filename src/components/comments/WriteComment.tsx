@@ -1,6 +1,6 @@
 import { IoMdSend } from "react-icons/io"
 import { Textarea } from "../ui/textarea"
-import { useState } from "react"
+import React, { useState } from "react"
 import handleSubmitComment from "./handler/handleSubmitComment"
 import handleSubmitReply from "./handler/handleSubmitReply"
 const WriteComment = ({ postId, commentId, postOwnerId, commentOwnerId }: { postId: string | null, commentId?: string | null, postOwnerId: string | null, commentOwnerId: string | null }) => {
@@ -27,4 +27,4 @@ const WriteComment = ({ postId, commentId, postOwnerId, commentOwnerId }: { post
     )
 }
 
-export default WriteComment
+export default React.memo(WriteComment)

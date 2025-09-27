@@ -28,7 +28,7 @@ const Post = ({ e, setSharePostId, setImagePath, setDeletePostId, setPostId, set
     const [isThereReadMore, setIsThereReadMore] = useState<boolean>(false);
     useEffect(() => {
         if (pRef.current?.clientHeight) {
-            setIsThereReadMore(pRef.current?.clientHeight >= 120);
+            setIsThereReadMore(pRef.current?.clientHeight > 120);
         }
     }, [])
 

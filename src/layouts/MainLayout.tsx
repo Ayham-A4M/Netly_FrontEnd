@@ -24,7 +24,10 @@ const MainLayout = () => {
                     <RightSideBar />
                 }
             </div>
-            <MobileNav />
+            {
+                screenWidth <= 1024 &&
+                <MobileNav />
+            }
         </div>
     )
 }

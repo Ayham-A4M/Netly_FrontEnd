@@ -30,7 +30,6 @@ const ShowPosts = ({ posts, setPosts }: props) => {
                 ((posts?.length === 0 || !posts) && window.location.href.includes("/post/")) ?
                     <div className="flex w-full h-full items-center justify-center md:text-xl text-primary">
                         <span className="">This post is no longer avaliable </span>
-
                     </div>
                     :
                     posts?.map((e: any) => (
@@ -53,12 +52,21 @@ const ShowPosts = ({ posts, setPosts }: props) => {
                 !!postId &&
                 <CommentSections postId={postId} setPostId={setPostId} postOwnerId={postOwnerId} />
 
-
             }
             <ShowImageDialog onClose={() => { setTimeout(() => { setImagePath(null) }, 300) }} imagePath={imagePath} />
-            <DeleteDialog open={!!deletePostId} onClose={() => { setDeletePostId(null) }} onSubmit={handleDeletePost} />
-            <EditPostDialog open={!!editPostId} onClose={() => { setEditPostId(null) }} editPostId={editPostId} />
-            <ShareDialog open={!!sharePostId} onClose={() => { setSharePostId(null) }} postId={sharePostId} />
+            {
+                !!deletePostId &&
+                <DeleteDialog open={!!deletePostId} onClose={() => { setDeletePostId(null) }} onSubmit={handleDeletePost} />
+
+            }
+            {
+                !!editPostId &&
+                <EditPostDialog open={!!editPostId} onClose={() => { setEditPostId(null) }} editPostId={editPostId} />
+            }
+            {
+                !!sharePostId &&
+                <ShareDialog open={!!sharePostId} onClose={() => { setSharePostId(null) }} postId={sharePostId} />
+            }
 
 
         </>

@@ -4,7 +4,7 @@ import { IoMdClose, IoIosArrowRoundBack } from "react-icons/io";
 import WriteComment from "./WriteComment";
 import ShowComments from "./showComments";
 import Loader from "../ui/loader";
-import { useState } from "react";
+import React, { useState } from "react";
 import { createContext } from "react";
 import useGetCommentReplies from "@/hooks/useGetCommentReplies";
 import ShowReplies from "./ShowReplies";
@@ -87,4 +87,4 @@ const CommentSections = ({ postId, setPostId, postOwnerId }: { postId: string, s
     )
 }
 
-export default CommentSections
+export default React.memo(CommentSections)
