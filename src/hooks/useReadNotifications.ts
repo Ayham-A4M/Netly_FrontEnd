@@ -17,7 +17,7 @@ const useReadNotifications = (notifications: any) => {
                 showErrorToast(err);
             }
         }
-        if (!!context?.numberOfNotification) {
+        if (!!context?.numberOfNotification && notifications) {
             readNotification();
         }
     }, [notifications])
