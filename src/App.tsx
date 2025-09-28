@@ -56,7 +56,8 @@ function App() {
         <Toaster
           toastOptions={{
             position: 'top-right',
-            style: { borderRadius: '6px', color: '#444444' }
+            style: { borderRadius: '6px', color: '#444444',zIndex:"999" }
+          
           }}
         />
         <Suspense fallback={<SpinnerLoading />}>

@@ -37,6 +37,7 @@ const PostCreation = () => {
             setPostContent("");
             setPreviewImages([]);
             setPostImages(null);
+            window.location.reload();
         }
     }
 

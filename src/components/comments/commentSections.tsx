@@ -26,7 +26,7 @@ const CommentSections = ({ postId, setPostId, postOwnerId }: { postId: string, s
     useInfiniteScroll(page, limitOfPages, comments, loading, setPage);
     useInfiniteScroll(pageOfReplies, numberOfPages, commentReplies, loadingReplies, setPageOfReplies)
     return (
-        <div className='h-[90vh]  shadow-2xl rounded-t-2xl w-full overflow-y-scroll bg-background z-[9999] fixed bottom-0 right-0'>
+        <div className='h-[90vh]  shadow-2xl rounded-t-2xl w-full overflow-y-scroll bg-background z-[100] fixed bottom-0 right-0'>
             <div className="flex justify-between flex-col gap-3 w-full h-full">
                 <div className="flex flex-col gap-2">
                     <div className={`flex w-full ${commentId ? 'justify-between' : 'justify-end'} px-3 pt-3 sticky top-0`}>
